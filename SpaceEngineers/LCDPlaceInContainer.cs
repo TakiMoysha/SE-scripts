@@ -15,14 +15,56 @@ using SpaceEngineers.Game.ModAPI.Ingame;
 
 public sealed class LCDPlaceInContainer : MyGridProgram
 {
-    public LCDPlaceInContainer()
-    { }
+    int CurrentTick;
+    int Clock = 15;
+    int fullness;
 
     public void Main(string args)
     {
-    }
+        CurrentTick++;
 
-    public void Save()
-    { }
-    
+        float capacity = 0f;
+        float volume = 0f;
+        float weight = 0f;
+
+        IMyTimerBlock timer = GridTerminalSystem.GetBlockWithName("Timer") as IMyTimerBlock;
+        IMyTextPanel LCDLeft = GridTerminalSystem.GetBlockWithName("LCD Left") as IMyTextPanel;
+        IMyTextPanel LCDRight = GridTerminalSystem.GetBlockWithName("LCD Right") as IMyTextPanel;
+        List<IMyTerminalBlock> cargoContainers = new List<IMyTerminalBlock>();
+        List<IMyTerminalBlock> shipDrills = new List<IMyTerminalBlock>();
+
+        GridTerminalSystem.SearchBlocksOfName("Cargo", cargoContainers);
+        GridTerminalSystem.SearchBlocksOfName("Drill", shipDrills);
+        timer.ApplyAction("TriggerNow");
+
+        if(CurrentTick%Clock != 0)
+        {
+            return;
+        }
+
+        if(LCDLeft != null & LCDRight != null)
+        {
+        foreach (IMyShipDrill cont in shipDrills)
+        {
+            capacity += (float)cont.GetInventory(0).MaxVolume;
+            volume += (float)cont.GetInventory(0).CurrentVolume;
+            weight += (float)cont.GetInventory(0).CurrentMass;
+        }
+
+        foreach (IMyCargoContainer cont in cargoContainers)
+        {
+            capacity += (float)cont.GetInventory(0).MaxVolume;
+            volume += (float)cont.GetInventory(0).CurrentVolume;
+            weight += (float)cont.GetInventory(0).CurrentMass;
+        }   
+
+        Echo($"Capacity: {capacity}");
+        Echo($"Used:     {volume}");
+        Echo($"Percentage: {volume / capacity}");
+
+        LCDLeft.WriteText("Емкость: " + capacity + "\nЗанято: " + volume + "\n");
+        LCDRight.WriteText(cargoContainers.Count.ToString());
+        }
+        
+    }
 }
