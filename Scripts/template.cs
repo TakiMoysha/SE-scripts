@@ -12,10 +12,10 @@ using VRage.Collections;
 using VRage.Game.ObjectBuilders.Definitions;
 using VRage.Game.ModAPI.Ingame;
 using SpaceEngineers.Game.ModAPI.Ingame;
-public sealed class Program : MyGridProgram
+public sealed class template : MyGridProgram
 {
     // НАЧАЛО СКРИПТА
-    public Program()
+    public template()
     {
 
     }
@@ -26,7 +26,6 @@ public sealed class Program : MyGridProgram
 
     public void Main(string args)
     {
-
     }
     // КОНЕЦ СКРИПТА
 }

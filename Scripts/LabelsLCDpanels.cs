@@ -18,6 +18,7 @@ public sealed class LabelsLCDpanels : MyGridProgram
     {
         List<IMyTextPanel> LCDs = new List<IMyTextPanel>();
         GridTerminalSystem.GetBlockGroupWithName("LCDS panels").GetBlocksOfType(LCDs);
+
     }
 
     public void Main(string args)

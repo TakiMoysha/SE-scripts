@@ -56,7 +56,7 @@ public sealed class LCDPlaceInContainer : MyGridProgram
             capacity += (float)cont.GetInventory(0).MaxVolume;
             volume += (float)cont.GetInventory(0).CurrentVolume;
             weight += (float)cont.GetInventory(0).CurrentMass;
-        }   
+        }
 
         Echo($"Capacity: {capacity}");
         Echo($"Used:     {volume}");
@@ -65,6 +65,6 @@ public sealed class LCDPlaceInContainer : MyGridProgram
         LCDLeft.WriteText("Емкость: " + capacity + "\nЗанято: " + volume + "\n");
         LCDRight.WriteText(cargoContainers.Count.ToString());
         }
-        
+
     }
 }
