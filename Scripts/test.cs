@@ -12,6 +12,8 @@ using VRage.Collections;
 using VRage.Game.ObjectBuilders.Definitions;
 using VRage.Game.ModAPI.Ingame;
 using SpaceEngineers.Game.ModAPI.Ingame;
+
+
 public sealed class Program : MyGridProgram
 {
     // НАЧАЛО СКРИПТА
@@ -20,6 +22,7 @@ public sealed class Program : MyGridProgram
 
     public void Main(string args)
     {
+        // IMyCameraBlock Camera = GridTerminalSystem.GetBlockWithName("Camera1") as IMyCameraBlock;
     }
 
     public void Save()

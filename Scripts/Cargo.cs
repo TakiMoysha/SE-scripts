@@ -27,7 +27,8 @@ public sealed class Cargo : MyGridProgram
         Runtime.UpdateFrequency = UpdateFrequency.Update10;
         
         containers = FindShipBlocks<IMyCargoContainer>();     
-        LCDCargoInfo = GridTerminalSystem.GetBlockWithName("LCDCargoInfo") as IMyTextPanel;  
+        LCDCargoInfo = GridTerminalSystem.GetBlockWithName("LCDCargoInfo") as IMyTextPanel;
+          
 
         IMyTextSurfaceProvider cockpit = (IMyTextSurfaceProvider)GridTerminalSystem.GetBlockWithName(CockpitName);
 
